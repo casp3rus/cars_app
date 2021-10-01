@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
+import { Navbar } from '../../components/navbar'
+
 const PageContainer = styled.div`
   ${tw`
     flex
@@ -16,7 +18,7 @@ const PageContainer = styled.div`
 export function HomePage() {
   return (
     <PageContainer>
-      Hello World!!
+      <Navbar />
     </PageContainer>
   )
 }
