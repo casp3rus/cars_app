@@ -8,6 +8,8 @@ import { Marginer } from '../marginer';
 
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
+import { SCREENS } from '../responsive';
 
 const CardContainer = styled.div`
   min-height: 4.3em;
@@ -47,6 +49,17 @@ const Icon = styled.span`
   `}
 `;
 
+const SmallIcon = styled.span`
+  ${tw`
+    text-gray-500
+    fill-current
+    text-xs
+    md:text-base
+    ml-1
+
+  `}
+`;
+
 const LineSeparator = styled.span`
   width: 2px;
   height: 45%;
@@ -65,17 +78,24 @@ const Name = styled.span`
     text-xs
     md:text-sm
     cursor-pointer
+    select-none
   `}
 `;
 
 const DateCalendar = styled(Calendar)`
   position: absolute;
   max-width: none;
-  top: 3.5em;
-  left: -2em;
+  top: 2em;
+  left: -6em;
+  user-select: none;
+
+  @media (min-width: ${SCREENS.md}) {
+    top: 3.5em;
+    left: -2em;
+  }
 `;
 
-export default function BookCard() {
+export function BookCard() {
   const [startDate, setStartDate] = useState(new Date());
   const [isStartCalendarOpen, setIsStartCalendarOpen] = useState(false);
   const [returnDate, setReturnDate] = useState(new Date());
@@ -98,6 +118,9 @@ export default function BookCard() {
           <FontAwesomeIcon icon={faCalendarAlt} />
         </Icon>
         <Name onClick={toggleStartDateCalendar}>Pick Up Date</Name>
+        <SmallIcon>
+          <FontAwesomeIcon icon={isStartCalendarOpen ? faCaretUp : faCaretDown} />
+        </SmallIcon>
         {isStartCalendarOpen && (
           <DateCalendar value={startDate} onChange={setStartDate} />
         )}
@@ -108,6 +131,9 @@ export default function BookCard() {
           <FontAwesomeIcon icon={faCalendarAlt} />
         </Icon>
         <Name onClick={toggleReturnDateCalendar}>Return Date</Name>
+        <SmallIcon>
+          <FontAwesomeIcon icon={isReturnCalendarOpen ? faCaretUp : faCaretDown} />
+        </SmallIcon>
         {isReturnCalendarOpen && <DateCalendar value={returnDate} onChange={setReturnDate} />}
       </ItemContainer>
       <Marginer direction='horizontal' margin='2em' />
