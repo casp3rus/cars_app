@@ -13,14 +13,14 @@ import { Button } from '../button';
 interface ICarProps extends ICar {}
 
 const CarContainer = styled.div`
-  min-width: 16.5em;
+  width: 16.5em;
   min-height: 22.2em;
-  max-height: 22.2em;
+  max-height: 24.1em;
   box-shadow: 0 1.3px 17px -2px rgba(0, 0, 0, 0.4);
   ${tw`
     flex
     flex-col
-    item-center
+    items-center
     p-3
     pb-4
     bg-white
@@ -63,6 +63,7 @@ const PricesContainer = styled.div`
 const SmallText = styled.p`
   color: inherit;
   ${tw`
+    inline-flex
     text-xs
     font-thin
   `}
